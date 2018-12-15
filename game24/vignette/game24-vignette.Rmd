@@ -1,0 +1,83 @@
+---
+title: "game24 Package"
+output:
+  html_document:
+    df_print: paged
+vignette: |
+  %\VignetteEngine{knitr::rmarkdown} 
+  %\VignetteIndexEntry{game24 Package} 
+  %\VignetteEncoding{UTF-8}
+  
+
+
+---
+# Team Newbility 
+# Augustus Ge, Chengzhao Tu, Yan Zhao, Runyu Hai
+
+  This package contains tools and games based on the popular card game 24. The game of 24 is played by drawing four cards from a deck and then using basic arithmetic to use these cards to calculate 24. In the traditional card game, the cards 1-10 take on their numeric values, while J = 11, Q = 12, and K = 13. A variation of this game is Krypto, in which you draw five cards with the 5th one being the objective card, which you must use the prior four to calculate in the same manner as 24. 
+  
+  Naturally, there are multiple methods to calculate 24 on certain hands, while there are no possible methods to calculate 24 on other hands. Using functions in the game24 package will let you see all possible solutions as well as play 24 and Krypto. Additionally, we are able to iterate many hands of 24 and to see the probability of combinations a card that not being able to get 24. Finally, there is a function included that can tell us whether or not n amount of cards can calculate an objective card. The following are some instructions of how to use each function in this package.
+
+
+
+#1) game24
+```{r, echo=FALSE}
+library(combinat)
+library(stringr)
+library(game24)
+```
+game24 enables user to enter four integers and see all possible methods to get 24 using basic arithmetic. For example,
+```{r, echo=FALSE}
+game24(c(1,2,3,5))
+```
+ There are two variation of using game24. First, if the user want to find out ways of getting other numbers other than 24, they can set argument b equal to the number they want to get. For example,
+```{r}
+game24(c(1,2,3,5),b=36)
+```
+ The second variation is that the user can choose which arithmetic method involved in the calculation by setting up "Sign" argument. For example, if we want to use 1,2,3,5 to get 24 by using only addition and multiplication
+```{r}
+game24(c(1,2,3,5),Sign=c("+","*"))
+```
+ 
+#2) game24_other
+ There are often times the user cannot get 24, however they can use game24_other to get other number they would like to get. Note here b is a vector of other integers that user want to take them as the calculation targets. The calculation will stop until they find the first target in the vector that could be the result for combination of calculations. For example, 7,7,7,7 cannot get 24, but we want to see if they can get any number between 25 to 30.
+```{r}
+game_other(c(7,7,7,7),b=25:30)
+```
+#3) game24prob
+ This function helps user to get information on the probability of combinations of a card that not being able to get 24. 
+```{r}
+game24prob(7)
+game24prob(4)
+```
+
+#4) game24table
+ game24table gives users the table of all the combinations of the number the user input as well as the counts of different method to get 24. "Card4"" column is the number that user entered, in the following case, I entered 5. The table contains all the combinations including one 5. The "Count" column is the the count of different methods to get 24 for a certain combination. 
+```{r}
+table<-game24table(5)
+head(table)
+```
+ 
+#5) game24_makeCards
+ This function allows user to play the famous card game 24 on the console. It gives the user four random cards between 1-13 and allows the user to input when they would like to see solutions.
+```{r,eval=FALSE}
+game24_makeCards()
+```
+
+
+#6) gameKrypto_makeCards
+ This function allows user to play the famous card game Krypto on the console. It gives the user four random cards along with a fifth random objective card between 1-13 and allows the user to input when they would like to see solutions.
+```{r, eval=FALSE}
+gameKrypto_makeCards()
+```
+ 
+#7) game_check
+ This function can help you to check whether a series of number can generate another number that user input. For example, we want to know if 3,4,5,6 can generate 47 by basic operations. 
+```{r}
+game_check(c(3,4,5,6),b=47)
+```
+ 
+
+ 
+
+ 
