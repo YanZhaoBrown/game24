@@ -1,0 +1,11 @@
+Package: game24
+Type: Package
+Title: Solve 24 games problems.
+Version: 0.1.0
+Author:  Yan Zhao, Chengzhao Tu, Augustus Ge, Runyu Hai
+Maintainer: <runyu_hai@brown.edu> <chengzhao_tu@brown.edu> <yan_zhao@brown.edu> <augustus_ge@brown.edu>
+Description:  This package contains tools and games based on the popular card game 24. The game of 24 is played by drawing four cards from a deck and then using basic arithmetic to use these cards to calculate 24. In the traditional card game, the cards 1-10 take on their numeric values, while J = 11, Q = 12, and K = 13. A variation of this game is Krypto, in which you draw five cards with the 5th one being the objective card, which you must use the prior four to calculate in the same manner as 24. 
+  Naturally, there are multiple methods to calculate 24 on certain hands, while there are no possible methods to calculate 24 on other hands. Using functions in the game24 package will let you see all possible solutions as well as play 24 and Krypto. Additionally, we are able to iterate many hands of 24 and plot it to see the distribution of the amount of possible methods for each hand. Finally, there is a function included that can tell us whether or not n amount of cards can calculate an objective card.
+License: What license is it under?
+Encoding: UTF-8
+LazyData: true
