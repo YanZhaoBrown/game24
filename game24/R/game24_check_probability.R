@@ -153,7 +153,7 @@ game24table = function(x, b) {
 game24prob = function(x, b) {
   count = game24table(x, b)
   probability = length(count[count == 0])/nrow(count)
-  print(paste("Given that at least one card is the number you input, the probability of being able to calculate",b,"is"))
+  #print(paste("Given that at least one card is the number you input, the probability of being able to calculate",b,"is"))
   return(1-probability)
 
 }
