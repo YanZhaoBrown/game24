@@ -136,10 +136,8 @@ game24=function(A,b=24,Sign=c("+","-","*","/")){
                           operation_3[f],  " = ",b))
   }
 
-  for(m in 1:length(method)){
-    print(paste("Method ", m, ":", method[m]))
-  }
-
+ df=data.frame("Method"=1:length(method),"Process"=method)
+ return(df)
 }
 
 
