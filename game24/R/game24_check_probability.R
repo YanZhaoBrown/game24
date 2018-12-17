@@ -4,7 +4,7 @@ library(stringr)
 library(ggplot2)
 library(reshape)
 
-#calculating function
+#calculating function, comments in 'game24' R file
 num_sign=function(a,b,sign){
   if(sign==1){
     return(a+b)
@@ -27,7 +27,7 @@ num_sign=function(a,b,sign){
 }
 
 
-#Print strings
+#Print strings, comments in 'game24' R file
 trans=function(b,c,a){
   stopifnot(a==1 | a==2 | a==3 | a==4 | a==5 | a==6)
   if(a==1){
@@ -57,7 +57,7 @@ trans=function(b,c,a){
 }
 
 
-#Main function
+#Main function, comments in 'game24' R file
 game24_table=function(A,b){
   len=length(A)
   B=combinat::permn(A)
@@ -120,17 +120,19 @@ game24_table=function(A,b){
 
 
 
-#Generate frequency of methods table
+#Generate frequency of methods table. game24table gives users the table of all the combinations of the number the user input as well as the counts of different method to get 24. 
 game24table = function(x, b) {
   # x is the input by user
   x = as.integer(x)
 
+  #Generate first three card
   sample = combn(1:13, 3)
   sample = t(sample)
   n = nrow(sample)
-  sample = cbind(sample, rep(x, n))
+  sample = cbind(sample, rep(x, n)) #Construct frame with 4 cards
   counts = vector(mode = "integer", length = 0)
 
+  #Use the for loop to get the counts of the number of the methods for each combination
   for (i in 1:n) {
     count = game24_table(sample[i,], b)
     counts = c(counts, count)
@@ -165,21 +167,24 @@ game24prob = function(x, b) {
 ##ggplot
 
 plot_comparison = function(b) {
-  #We pre ran the probability of each cards for game24 to save runnin time
+  #We pre ran the probability of each cards can do 24 to save running time
   probs_24 = c(0.7272727, 0.8951049, 0.8706294, 0.8741259, 0.7902098, 0.8601399, 0.6958042,
                0.8461538, 0.7587413, 0.7587413, 0.6713287, 0.8496503, 0.6398601)
   cards = 1:13
 
+  #Calculate the probability for user interested number
   probs_other = vector(mode = "numeric", length = length(cards))
   for (i in 1:length(cards)) {
     probs_other[i] = game24prob(cards[i],b)
   }
 
+  #Combine the probability of game24 and game other
   df_24 = cbind(cards, probs_24, probs_other)
   df_24 = as.data.frame(df_24)
   colnames(df_24) = c("cards","probability 24", "probability of user interest")
 
-  df <- reshape::melt(df_24, id = c("cards"))
+  df <- reshape::melt(df_24, id = c("cards")) #This steps is doing to help visulisation
+  #Plot the comparison ggplot
   ggplot = ggplot2::ggplot(df, aes(x=cards, y = value, fill = variable))+
     geom_bar(stat='identity', position='dodge') +
     labs(x = "cards", y = "probability", title = "Why game24? Probability of each cards getting 24 vs getting other number")
