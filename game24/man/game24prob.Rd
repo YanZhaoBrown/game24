@@ -30,7 +30,7 @@ This function calculates all of the possible combinations based on user input. R
 %% ~put references to the literature/web site here ~
 }
 \author{
-
+Yan Zhao
 }
 \note{
 %%  ~~further notes~~
