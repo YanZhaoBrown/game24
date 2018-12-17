@@ -1,9 +1,10 @@
 
 library(combinat)
 library(stringr)
+library(ggplot2)
+library(reshape)
 
-
-#give every operation a numeric value that will be used inside the function game24.
+#calculating function
 num_sign=function(a,b,sign){
   if(sign==1){
     return(a+b)
@@ -26,7 +27,7 @@ num_sign=function(a,b,sign){
 }
 
 
-#function to show the steps of operations that will be used inside the function game24.
+#Print strings
 trans=function(b,c,a){
   stopifnot(a==1 | a==2 | a==3 | a==4 | a==5 | a==6)
   if(a==1){
@@ -57,7 +58,7 @@ trans=function(b,c,a){
 
 
 #Main function
-game24_table=function(A,b=24){
+game24_table=function(A,b){
   len=length(A)
   B=combinat::permn(A)
   stopifnot(len==4)
@@ -109,7 +110,7 @@ game24_table=function(A,b=24){
   result2=result2[-rep]
 
   for(f in 1:length(operation_1)){
-    method=c(method,stringr::str_c(operation_1[f]," = ", result1[f], " then ",
+    method=c(method,str_c(operation_1[f]," = ", result1[f], " then ",
                           operation_2[f]," = ", result2[f], " then ",
                           operation_3[f],  " = ", b))
   }
@@ -119,8 +120,8 @@ game24_table=function(A,b=24){
 
 
 
-#Generate frequency table
-game24table = function(x) {
+#Generate frequency of methods table
+game24table = function(x, b) {
   # x is the input by user
   x = as.integer(x)
 
@@ -131,7 +132,7 @@ game24table = function(x) {
   counts = vector(mode = "integer", length = 0)
 
   for (i in 1:n) {
-    count = game24_table(sample[i,], b = 24)
+    count = game24_table(sample[i,], b)
     counts = c(counts, count)
   }
 
@@ -148,15 +149,44 @@ game24table = function(x) {
 #count = game_table()
 
 
-#Calculate the probability of combinations cannot do 24
-game24prob = function(x) {
-  count = game24table(x)
+#Calculate the probability of combinations can do 24
+game24prob = function(x, b) {
+  count = game24table(x, b)
   probability = length(count[count == 0])/nrow(count)
-  print(paste("Given that at least one card is the number you input, the probability of not being able to calculate 24 is "))
-  return(probability)
+  print(paste("Given that at least one card is the number you input, the probability of being able to calculate 24 is "))
+  return(1-probability)
 
 }
 
-
 #Test for probability
 #probability = game24prob(7)
+
+
+##ggplot
+
+plot_comparison = function(b) {
+  cards = 1:13
+  probs_24 = vector(mode = "numeric", length = length(cards))
+  for (i in 1:length(cards)) {
+  probs_24[i] = game24prob(cards[i],24)
+}
+
+  probs_other = vector(mode = "numeric", length = length(cards))
+  for (i in 1:length(cards)) {
+    probs_other[i] = game24prob(cards[i],b)
+  }
+
+  df_24 = cbind(cards, probs_24, probs_other)
+  df_24 = as.data.frame(df_24)
+  colnames(df_24) = c("cards","probability 24", "probability of user interest")
+
+  df <- reshape::melt(df_24, id = c("cards"))
+  ggplot = ggplot2::ggplot(df, aes(x=cards, y = value, fill = variable))+
+    geom_bar(stat='identity', position='dodge') +
+    labs(x = "cards", y = "probability", title = "Why game24? Probability of each cards getting 24 vs getting other number")
+
+  return(ggplot)
+}
+
+#Test for plot
+#plot_comparison(27)
