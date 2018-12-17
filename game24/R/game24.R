@@ -95,10 +95,10 @@ game24=function(A,b=24,Sign=c("+","-","*","/")){
   stopifnot(len==4)# stop if the length of vector A is not 3
   stopifnot(A[1]%%1==0 & A[2]%%1==0 & A[3]%%1==0 & A[4]%%1==0) #stop if any value of vector A is not a integer
   method=vector(mode="character",length=0)#initiate a empty vector 
-  operation_1=vector(mode="character",length=0)
-  operation_2=vector(mode="character",length=0)
-  operation_3=vector(mode="character",length=0)
-  rep=vector(mode="integer",length=0)
+  operation_1=vector(mode="character",length=0)# a temporary vector of character that stores the the first 2 integer and their way of operation ex:"1/2"
+  operation_2=vector(mode="character",length=0))# a temporary vector of character that stores the the first result and third integer and their way of operation ex:"1/2"
+  operation_3=vector(mode="character",length=0)# a temporary vector of character that stores the the second result and forth integer and their way of operation ex:"1/2"
+  rep=vector(mode="integer",length=0)# 
   result1=vector(mode="integer",length=0)
   result2=vector(mode="integer",length=0)
   for(s in 1:factorial(len)){
