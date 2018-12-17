@@ -107,8 +107,10 @@ server <- function(input, output) {
     }
   }
   
-  gameKrypto_makeCardsShiny=function(){
+  gameKrypto_makeCardsShiny=function(A = 0, b=0){
+    if(A == 0){
     A = sample(1:13, 4, replace = TRUE)
+    }
     output$fieldCards1 = renderText({
       paste(c("Make the objective card from these cards:", A), collapse = " ")
       })
@@ -171,19 +173,19 @@ server <- function(input, output) {
     result1=result1[-rep]
     result2=result2[-rep]
     
+    #After delete the repetation, we store all of the method in a vector 
     for(f in 1:length(operation_1)){
       method=c(method,stringr::str_c(operation_1[f]," = ", result1[f], " then ",
                                      operation_2[f]," = ", result2[f], " then ",
-                                     operation_3[f],  " = ", b))
+                                     operation_3[f],  " = ",b))
     }
+    #Returning a data frame will make it look better and easy to deal with in the shiny app
+    #df=data.frame("Method"=1:length(method),"Process"=method)
     
-    sols1 = data.frame(matrix(nrow = length(method), ncol = 1))
-    for(m in 1:length(method)){
-      sols1[m] = paste("Method ", m, ":", method[m])
-    }
-    
-    output$solutions1 <- eventReactive(input$button, paste({sols1}))
+    df <- eventReactive(input$button, {df=data.frame("Method"=1:length(method),"Process"=method)})
+    output$solutions1 <- renderTable({df()})
   }
+  
   gameKrypto_makeCardsShiny()
 }
 
