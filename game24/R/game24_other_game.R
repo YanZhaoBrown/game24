@@ -55,7 +55,7 @@ trans=function(b,c,a){
   }
 }
 
-
+#main function
 game24_original =function(A,b=24){
   len=length(A)
   B=combinat::permn(A)
@@ -123,10 +123,10 @@ game24_original =function(A,b=24){
 
 #If game 24 fail, then calculate other number
 game_other = function(A, b) {
-  stopifnot(is.vector(A) & is.vector(b) & length(A) == 4)
+  stopifnot(is.vector(A) & is.vector(b) & length(A) == 4) #make sure the input are correct
   if (game24_original(A,24) == F) {
     for (i in 1:length(b)) {
-      if (game24_original(A,b[i]) != F) {
+      if (game24_original(A,b[i]) != F) { #Test vector b by sequence
         break
       }
     }
