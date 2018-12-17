@@ -5,15 +5,18 @@
 %%  ~~function to do ... ~~
 }
 \description{
-game24prob gives users the probability of combinations of cards that not being able to get 24. Users should select any single integer between 1 and 13 as input. And the calculated probability is based on all of the combinations that include at least one of the user selected number.
+game24prob gives users the probability of combinations of cards that are being able to get 24. Some combinations of the numbers have no way to get 24, so it is useful for us to know the probability of getting 24. Users should select any single integer between 1 and 13 as input. And the calculated probability is based on all of the combinations that include at least one of the user selected number.
 }
 \usage{
-game24prob(x)
+game24prob(x, b)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{
 x is an user defined integer between 1 and 13. Each combinations of cards will include at least one of x.
+}
+  \item{b} {
+ b is target. User should input 24 if they are interested in game 24.
 }
 }
 \details{
@@ -30,7 +33,7 @@ This function calculates all of the possible combinations based on user input. R
 %% ~put references to the literature/web site here ~
 }
 \author{
-Yan Zhao
+
 }
 \note{
 %%  ~~further notes~~
