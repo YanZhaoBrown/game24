@@ -7,6 +7,9 @@ library(stringr)
 
 
 #give every operation a numeric value that will be used inside the function game24.
+#a,b are two values that you want to implement operation depending on the value of c.
+#for example: num_sign(1,3,1) will return 4, because in this case we calculate 1+3=4
+#We have 6 operation in total, because in the case of substruction and division, you have consider their order, so there are two additional operation.
 num_sign=function(a,b,sign){
   if(sign==1){
     return(a+b)
@@ -31,8 +34,12 @@ num_sign=function(a,b,sign){
 
 
 #function to show the steps of operations that will be used inside the function game24.
+#b,c are two values that you want to implement operation depending on the value of c. But, different than the previous function, this one only display the step not the real result.
+#this function will return a string that display the step of operation, for example, 
+#trans(1,2,4) will return "1 / 2"
+#trans(1,2,6) will return "2 / 1"
 trans=function(b,c,a){
-  stopifnot(a==1 | a==2 | a==3 | a==4 | a==5 | a==6)
+  stopifnot(a==1 | a==2 | a==3 | a==4 | a==5 | a==6) 
   if(a==1){
     k1=paste("(",b,"+",c,")")
     return(k1)
@@ -60,9 +67,12 @@ trans=function(b,c,a){
 }
 
 #function that transfer characters of signs to numeric
+#the S is a character vector that should contain strings of different sign, for example: S=c("+","-")
+#this function will return a numeric vector.
+#for example : sign(c("+","-")) will return 1,2,5. Note here, there are 3 numeric values, because you have to consider the order of substraction.
 sign <- function(S) {
-  vector=vector(mode="integer",length=0)
-  for (i in 1:length(S)) {
+  vector=vector(mode="integer",length=0)#initiate a empty vector 
+  for (i in 1:length(S)) { #by the for loop, giving each character in the vector S a numeric value and store each numeric value into new vector 
     if (S[i]=="+") {
       vector=c(vector,1)
     }else if (S[i] == "-") {
@@ -77,13 +87,14 @@ sign <- function(S) {
   return(vector)
 }
 #main function used to calcluate 24 or other interger by selected math operation.
+
 game24=function(A,b=24,Sign=c("+","-","*","/")){
-  a<-sign(Sign)
+  a<-sign(Sign)#a is the a numeric vector that contains the results from the sign function.
   len=length(A)
   B=combinat::permn(A)
-  stopifnot(len==4)
-  stopifnot(A[1]%%1==0 & A[2]%%1==0 & A[3]%%1==0 & A[4]%%1==0)
-  method=vector(mode="character",length=0)
+  stopifnot(len==4)# stop if the length of vector A is not 3
+  stopifnot(A[1]%%1==0 & A[2]%%1==0 & A[3]%%1==0 & A[4]%%1==0) #stop if any value of vector A is not a integer
+  method=vector(mode="character",length=0)#initiate a empty vector 
   operation_1=vector(mode="character",length=0)
   operation_2=vector(mode="character",length=0)
   operation_3=vector(mode="character",length=0)
