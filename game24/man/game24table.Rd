@@ -15,7 +15,7 @@ game24table(x,b)
   \item{x}{
 x is an user defined integer between 1 and 13. Each combinations of cards will include at least one of x.
 }
-  \item{b} {
+  \item{b}{
 b is the target. Here it should be 24 if user interested in game24.  
 }
 }
