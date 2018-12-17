@@ -8,12 +8,15 @@
 game24table gives users the table of all the combinations of cards as well as the counts for their number of methods. Users should select any single integer between 1 and 13. And the table is based on all of the combinations that include at least one of the user selected number.
 }
 \usage{
-game24table(x)
+game24table(x,b)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{
 x is an user defined integer between 1 and 13. Each combinations of cards will include at least one of x.
+}
+  \item{b} {
+b is the target. Here it should be 24 if user interested in game24.  
 }
 }
 \details{
