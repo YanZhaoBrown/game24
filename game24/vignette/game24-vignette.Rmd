@@ -21,10 +21,12 @@ vignette: |
 
 
 #1) game24
-```{r, echo=FALSE}
+```{r, message = F}
 library(combinat)
 library(stringr)
 library(game24)
+library(ggplot2)
+library(reshape)
 ```
 game24 enables user to enter four integers and see all possible methods to get 24 using basic arithmetic. For example,
 ```{r, echo=FALSE}
@@ -44,34 +46,41 @@ game24(c(1,2,3,5),Sign=c("+","*"))
 ```{r}
 game_other(c(7,7,7,7),b=25:30)
 ```
-#3) game24prob
- This function helps user to get information on the probability of combinations of a card that not being able to get 24. 
-```{r}
-game24prob(7)
-game24prob(4)
-```
 
-#4) game24table
+#3) game24table
  game24table gives users the table of all the combinations of the number the user input as well as the counts of different method to get 24. "Card4"" column is the number that user entered, in the following case, I entered 5. The table contains all the combinations including one 5. The "Count" column is the the count of different methods to get 24 for a certain combination. 
 ```{r}
-table<-game24table(5)
+table<-game24table(5,24)
 head(table)
 ```
+
+#4) game24prob
+ This function helps user to get information on the probability of combinations of a card that is being able to get 24. The probability was calculated from game24table.
+```{r}
+game24prob(7,24)
+game24prob(4,24)
+```
+
+#5) plot_comparison
+ This function gives user a comparison barplot of the probability of each cards getting 24 vs getting other number instead of 24. y axis is the probability to get 24 or other number for each combination containing the specific cards. We know that some of the combinations are not being able to get 24 or other number, so we make the comparison plot.
+```{r}
+plot_comparison(27)
+```
  
-#5) game24_makeCards
+#6) game24_makeCards
  This function allows user to play the famous card game 24 on the console. It gives the user four random cards between 1-13 and allows the user to input when they would like to see solutions.
 ```{r,eval=FALSE}
 game24_makeCards()
 ```
 
 
-#6) gameKrypto_makeCards
+#7) gameKrypto_makeCards
  This function allows user to play the famous card game Krypto on the console. It gives the user four random cards along with a fifth random objective card between 1-13 and allows the user to input when they would like to see solutions.
 ```{r, eval=FALSE}
 gameKrypto_makeCards()
 ```
  
-#7) game_check
+#8) game_check
  This function can help you to check whether a series of number can generate another number that user input. For example, we want to know if 3,4,5,6 can generate 47 by basic operations. 
 ```{r}
 game_check(c(3,4,5,6),b=47)
