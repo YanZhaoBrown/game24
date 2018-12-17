@@ -153,7 +153,7 @@ game24table = function(x, b) {
 game24prob = function(x, b) {
   count = game24table(x, b)
   probability = length(count[count == 0])/nrow(count)
-  #print(paste("Given that at least one card is the number you input, the probability of being able to calculate",b,"is"))
+  #print(paste("Given that at least one card is the number you input, the probability of being able to calculate 24 is "))
   return(1-probability)
 
 }
@@ -165,11 +165,10 @@ game24prob = function(x, b) {
 ##ggplot
 
 plot_comparison = function(b) {
+  #We pre ran the probability of each cards for game24 to save runnin time
+  probs_24 = c(0.7272727, 0.8951049, 0.8706294, 0.8741259, 0.7902098, 0.8601399, 0.6958042,
+               0.8461538, 0.7587413, 0.7587413, 0.6713287, 0.8496503, 0.6398601)
   cards = 1:13
-  probs_24 = vector(mode = "numeric", length = length(cards))
-  for (i in 1:length(cards)) {
-  probs_24[i] = game24prob(cards[i],24)
-}
 
   probs_other = vector(mode = "numeric", length = length(cards))
   for (i in 1:length(cards)) {
