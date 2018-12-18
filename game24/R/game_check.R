@@ -121,7 +121,7 @@ game_check=function(A,b){
       if(count1>=1){
         print(paste("This is at least one way to get", b))
       } else{
-        print(paste("We cant get",b,"with the numbers you provide"))
+        print(paste("We can't get",b,"with the numbers you provide"))
       }
     }
 
