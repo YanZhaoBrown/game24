@@ -185,7 +185,7 @@ server=function(input,output){
   })
   
   output$method2 <- renderTable({v$data2})
-#######PART 4#######
+#######PART 3#######
   # observe changes in "numInputs", and create corresponding number of inputs
   observeEvent(input$numInputs, {
     output$inputGroup = renderUI({
@@ -210,7 +210,7 @@ server=function(input,output){
     game_check(data3(),data4())
   })  
   
-########PART 3#######
+########PART 4#######
   output$plot = renderPlot({
     plot_prob(df,b = (input$n), type = input$plot_type)
   })
