@@ -103,10 +103,10 @@ game24=function(A,b=24,Sign=c("+","-","*","/")){
   for(s in 1:factorial(len)){ #There are totally factorial(len) sitution of the permutation of elements 
     for(i in a){
       result1_temp=num_sign(B[[s]][1],B[[s]][2],i)
-      result1_temp=fractions(result1_temp)
+      result1_temp=MASS::fractions(result1_temp)
       for(j in a){
         result2_temp=num_sign(result1_temp,B[[s]][3],j)
-        result2_temp=fractions(result2_temp)
+        result2_temp=MASS::fractions(result2_temp)
         for(k in a){
           result3=num_sign(result2_temp,B[[s]][4],k)
           if(result3==b){
@@ -142,9 +142,9 @@ game24=function(A,b=24,Sign=c("+","-","*","/")){
   operation_2=operation_2[-rep]
   operation_3=operation_3[-rep]
   result1=result1[-rep]
-  result1=fractions(result1)
+  result1=MASS::fractions(result1)
   result2=result2[-rep]
-  result2=fractions(result2)
+  result2=MASS::fractions(result2)
   #After delete the repetation, we store all of the method in a vector 
   for(f in 1:length(operation_1)){
     method=c(method,stringr::str_c(operation_1[f]," = ", result1[f], " then ",
