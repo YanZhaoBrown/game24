@@ -1,0 +1,21 @@
+Our Shiny App is based on the old Chinese card game called "24". In this game a group of players draw four field cards for everyone to use.
+The objective of the game is to use basic arithmetic operations (+, -, *, /) on the cards to calculate the value 24.
+Traditionally, Ace corresponds to 1, all numbered cards correspond to their respective values, Jack corresponds to 11, Queen 12, King 13.
+
+We decided to write this app because as we all grew up playing 24, we knew there were some combinations of 4 cards from which no one at the
+table could achieve 24. The question of "can these cards possibly make 24" was a constant theme, and now through our app we can know exactly
+whether any combination of 4 cards can make 24 and all of the methods how.
+
+Our app contains 4 tabs. 
+The first tab provides all of the methods to calculate 24 for any 4 cards. In addition, the user can also select
+another objective value other than 24 and observe all of the possible methods to calculate it.
+The second tab allows the user to play the game as it is traditionally played. Four random cards will be drawn and the user will have time
+to figure out if and how they can calculate 24. Once the user wants to view all of the methods, he or she can click a button allowing them
+to do so.
+The third tab was made as an analysis to determine exactly why the game is 24 as opposed to another target number. We ran a large sample
+size of simulations to determine whether 4 random cards could calculate 24 as opposed to other values between 20 and 30 and we discovered
+that the probability of being able to calculate 24 is higher than being able to calculate any other value between 20 and 30, 
+which is likely why the game is 24 and not another number.
+The fourth tab allows a user to input up to 5 cards and determine whether or not 24 can be calculated. Due to the exponential nature of
+iterating all possible arithmetic calculations given 5 cards, this feature takes some time (10 seconds to 3 minutes) 
+to run when 5 cards are inputted.
